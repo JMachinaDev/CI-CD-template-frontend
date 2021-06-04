@@ -6,10 +6,19 @@ import Test from './components/TestHeartBeatService';
 const App = () => {
 
   return (
-    <pre>
-      {JSON.stringify(data, null, 2)};
-    </pre>
+    <>
+      <nav>
+        <Link to={"/", "/home"} className="navbar-home">Home Page</Link>
+        <Link to={"/test"} className="navbar-test">Test Page</Link>
+      </nav>
+      <div>
+        <Switch>
+          <Route exact path={["/", "/home"]} component={Home} />
+          <Route exact path="/test" component={Test} />
+        </Switch>
+      </div>
+    </>
   );
-}
+};
 
 export default App;
