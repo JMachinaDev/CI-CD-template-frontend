@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import HeartbeatService from './services/heartbeatservice';
 
-function App() {
+const App = (props) => {
+  const checkAPI = new HeartbeatService();
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    checkAPI.ping()
+      .then(response => {
+        setData(response.data);
+        console.log(response);
+      })
+      .catch(error => {
+        console.error(error);
+        setData({ error: error });
+      })
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <pre>
+      {JSON.stringify(data, null, 2)};
+    </pre>
   );
 }
 
