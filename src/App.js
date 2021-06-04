@@ -1,21 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import HeartbeatService from './services/heartbeatservice';
+import React from 'react';
+import { Switch, Route, Link } from 'react-router-dom';
+import Home from './components/Home';
+import Test from './components/TestHeartBeatService';
 
-const App = (props) => {
-  const checkAPI = new HeartbeatService();
-  const [data, setData] = useState();
-
-  useEffect(() => {
-    checkAPI.ping()
-      .then(response => {
-        setData(response.data);
-        console.log(response);
-      })
-      .catch(error => {
-        console.error(error);
-        setData({ error: error });
-      })
-  }, []);
+const App = () => {
 
   return (
     <pre>
