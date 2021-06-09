@@ -6,7 +6,6 @@ const Home = () => {
   const [content, setContent] = useState('');
   const ping = new HeartbeatService().ping();
 
-
   useEffect(() => {
     ping
       .then((response) => {
